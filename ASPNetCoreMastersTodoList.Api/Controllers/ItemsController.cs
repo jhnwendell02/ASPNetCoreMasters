@@ -13,7 +13,7 @@ namespace ASPNetCoreMastersTodoList.Api.Controllers
     {
         public int Get(int userId)
         {
-            return userId;
+            return new ItemService().GetAll(userId);
         }
         public void Post(ItemCreateApiModel request)
         {

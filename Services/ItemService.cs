@@ -7,9 +7,9 @@ namespace Services
 {
     public class ItemService
     {
-        public IEnumerable<string> GetAll(int userId)
+        public int GetAll(int userId)
         {
-            return  new List<string>() { "jcustodio", "wcustodio", "jwcustodio" };
+            return userId;
         }
         public void Save(ItemDTO request)
         {
