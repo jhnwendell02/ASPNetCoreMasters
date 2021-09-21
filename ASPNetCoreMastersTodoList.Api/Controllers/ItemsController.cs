@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ASPNetCoreMastersTodoList.Api.ApiModels;
+using Microsoft.AspNetCore.Mvc;
 using Services;
+using Services.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,16 +9,21 @@ using System.Threading.Tasks;
 
 namespace ASPNetCoreMastersTodoList.Api.Controllers
 {
-
-    [ApiController]
     public class ItemsController : Controller
     {
-        [HttpGet]
-        [Route("/getall")]
-        public IEnumerable<string> GetAll(int userId)
+        public int Get(int userId)
         {
-            ItemService service = new ItemService();
-            return service.GetAll(userId);
+            return new ItemService().GetAll(userId);
+        }
+        public void Post(ItemCreateApiModel request)
+        {
+            if (ModelState.IsValid)
+            {
+                ItemService service = new ItemService();
+                ItemDTO serviceItem = new ItemDTO();
+                serviceItem.Text = request.Text;
+                service.Save(serviceItem);
+            }
         }
     }
 }
