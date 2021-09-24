@@ -15,7 +15,8 @@ namespace ASPNetCoreMastersTodoList.Api.Controllers
         {
             return new ItemService().GetAll(userId);
         }
-        public void Post(ItemCreateApiModel request)
+        [HttpPost]
+        public void Post([FromBody] ItemCreateApiModel request)
         {
             if (ModelState.IsValid)
             {
