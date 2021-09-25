@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31019.35
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASPNetCoreMastersTodoList.Api", "ASPNetCoreMastersTodoList.Api\ASPNetCoreMastersTodoList.Api.csproj", "{3E0BF11C-6723-4DC7-82CC-6F99DEEDF5C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASPNetCoreMastersTodoList.Api", "ASPNetCoreMastersTodoList.Api\ASPNetCoreMastersTodoList.Api.csproj", "{3E0BF11C-6723-4DC7-82CC-6F99DEEDF5C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{45F854F1-6FB9-4F9A-8EB2-94DDC4B2F2AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{45F854F1-6FB9-4F9A-8EB2-94DDC4B2F2AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainModels", "DomainModels\DomainModels.csproj", "{8A681DFB-D257-4E8F-B814-6D897CCF3353}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainModels", "DomainModels\DomainModels.csproj", "{8A681DFB-D257-4E8F-B814-6D897CCF3353}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repositories", "Repositories\Repositories.csproj", "{BE182A2C-360F-496A-92C6-1C4A3266674F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{8A681DFB-D257-4E8F-B814-6D897CCF3353}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A681DFB-D257-4E8F-B814-6D897CCF3353}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A681DFB-D257-4E8F-B814-6D897CCF3353}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE182A2C-360F-496A-92C6-1C4A3266674F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE182A2C-360F-496A-92C6-1C4A3266674F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE182A2C-360F-496A-92C6-1C4A3266674F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE182A2C-360F-496A-92C6-1C4A3266674F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
