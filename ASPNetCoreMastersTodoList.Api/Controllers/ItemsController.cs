@@ -15,7 +15,7 @@ namespace ASPNetCoreMastersTodoList.Api.Controllers
     public class ItemsController : ControllerBase
     {
         [HttpGet]
-        public IActionResult GetAll(int userId)
+        public IActionResult GetAll()
         {
             return Ok(new ItemService().GetAll());
         }
