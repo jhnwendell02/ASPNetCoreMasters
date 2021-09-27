@@ -21,15 +21,20 @@ namespace Repositories.Implementation
 
         public void Delete(int id)
         {
-            //Code to Delete
-            int i = _dataContext.Items.Where(x => x.ItemId == id ).Select(x => x.ItemId).First();
-            var rec = _dataContext.Items.ToList();
-            rec.RemoveAll(x => rec.Any(xx => xx.ItemId == i));
+            _dataContext.Items.RemoveAll(x => x.ItemId == id);
         }
 
         public void Save(Item item)
         {
-            //Code to save
+            Item data = _dataContext.Items.Where(x => x.ItemId == item.ItemId).FirstOrDefault();
+            if (data == null)
+            {
+                _dataContext.Items.Add(item);
+            }
+            else
+            {
+                data.Text = data.Text;
+            }
         }
     }
 }

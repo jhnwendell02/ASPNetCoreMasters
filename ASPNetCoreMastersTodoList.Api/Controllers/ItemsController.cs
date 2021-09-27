@@ -37,7 +37,7 @@ namespace ASPNetCoreMastersTodoList.Api.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] ItemCreateBindingModel itemCreateModel)
         {
-            ItemCreateDTO requestData = new ItemCreateDTO() { ItemId = itemCreateModel.ItemId, Description = itemCreateModel.Description, Name = itemCreateModel.Name };
+            ItemDTO requestData = new ItemDTO() { ItemId = itemCreateModel.ItemId, Text = itemCreateModel.Name };
             _service.Create(requestData);
             return Ok(requestData);
         }

@@ -12,7 +12,7 @@ namespace Services
     {
         private readonly List<int> numbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
         public readonly IItemRepository _repos;
-        public ItemService(IItemRepository repos, DataContext dataContext)
+        public ItemService(IItemRepository repos)
         {
             _repos = repos;
         }
@@ -54,9 +54,9 @@ namespace Services
             item.ItemId = request.ItemId; 
             _repos.Save(item);
         }
-        public void Create(ItemCreateDTO request)
+        public void Create(ItemDTO request)
         {
-            ItemCreate item = new ItemCreate() { Name = request.Name, Description = request.Description, ItemId = request.ItemId };
+            ItemDTO item = new ItemDTO() { Text = request.Text, ItemId = request.ItemId };
         }
         public string Delete(int itemId)
         {
