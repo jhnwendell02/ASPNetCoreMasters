@@ -6,6 +6,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Repositories;
+using Repositories.Implementation;
+using Repositories.Interfaces;
+using Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +30,9 @@ namespace ASPNetCoreMastersTodoList.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddScoped<IItemService, ItemService>();
+            services.AddTransient<IItemRepository, ItemRepository>();
+            services.AddSingleton<DataContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,9 +56,7 @@ namespace ASPNetCoreMastersTodoList.Api
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller}/{action}/{id?}");
+                endpoints.MapControllers();
             });
         }
     }

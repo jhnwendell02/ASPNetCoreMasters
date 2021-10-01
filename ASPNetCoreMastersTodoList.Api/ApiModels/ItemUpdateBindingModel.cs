@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace ASPNetCoreMastersTodoList.Api.ApiModels
 {
-    public class ItemCreateApiModel
+    public class ItemUpdateBindingModel
     {
-        [Required]
-        [StringLength(128, MinimumLength = 1)]
-        public string Text { get; set; }
         public int ItemId { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
     }
 }
