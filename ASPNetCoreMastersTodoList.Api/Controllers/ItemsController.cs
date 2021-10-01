@@ -32,7 +32,8 @@ namespace ASPNetCoreMastersTodoList.Api.Controllers
         [HttpGet("filterBy")]
         public IActionResult GetByFilters([FromQuery] Dictionary<string, string> filters)
         {
-            return Ok(_service.GetAllByFilter(new ItemByFilterDTO() { }));
+            var textValues = filters["text"];
+            return Ok(_service.GetAllByFilter(new ItemByFilterDTO() { text = textValues }));
         }
         [HttpPost]
         public IActionResult Post([FromBody] ItemCreateBindingModel itemCreateModel)
