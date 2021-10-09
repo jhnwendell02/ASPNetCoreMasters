@@ -1,5 +1,6 @@
 ﻿using ASPNetCoreMastersTodoList.Api.ApiModels;
 using ASPNetCoreMastersTodoList.Api.Filters;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Services;
 using Services.DTO;
@@ -13,6 +14,7 @@ namespace ASPNetCoreMastersTodoList.Api.Controllers
 {
     [Route("{controller}")]
     [ApiController]
+    [Authorize]
     public class ItemsController : ControllerBase
     {
         public readonly IItemService _service;
