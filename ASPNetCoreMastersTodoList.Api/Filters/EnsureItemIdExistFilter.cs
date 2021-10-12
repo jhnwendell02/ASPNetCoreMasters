@@ -19,11 +19,16 @@ namespace ASPNetCoreMastersTodoList.Api.Filters
 
         public void OnActionExecuting(ActionExecutingContext context)
         {
-            var itemId = (int)context.ActionArguments["itemId"];
-            var isExist = _service.Get(itemId);
-            if (isExist == null)
+            object obj;
+            var hasVal = context.ActionArguments.TryGetValue("itemId", out obj);
+            if(hasVal)
             {
-                context.Result = new NotFoundResult();
+                var itemId = (int)context.ActionArguments["itemId"];
+                var isExist = _service.Get(itemId);
+                if (isExist == null)
+                {
+                    context.Result = new NotFoundResult();
+                }
             }
         }
     }
