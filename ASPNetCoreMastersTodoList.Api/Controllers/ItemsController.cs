@@ -1,4 +1,6 @@
 ﻿using ASPNetCoreMastersTodoList.Api.ApiModels;
+using ASPNetCoreMastersTodoList.Api.Filters;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Services;
 using Services.DTO;
@@ -12,6 +14,7 @@ namespace ASPNetCoreMastersTodoList.Api.Controllers
 {
     [Route("{controller}")]
     [ApiController]
+    [Authorize]
     public class ItemsController : ControllerBase
     {
         public readonly IItemService _service;
@@ -25,6 +28,7 @@ namespace ASPNetCoreMastersTodoList.Api.Controllers
             return Ok(_service.GetAll());
         }
         [HttpGet("{itemId}")]
+        [EnsureItemIdExistFilterAttribute]
         public IActionResult Get(int itemId)
         {
             return Ok(_service.Get(itemId));
@@ -43,6 +47,7 @@ namespace ASPNetCoreMastersTodoList.Api.Controllers
             return Ok(requestData);
         }
         [HttpPut("{itemId}")]
+        [EnsureItemIdExistFilterAttribute]
         public IActionResult Put(int itemId, [FromBody] ItemUpdateBindingModel itemUpdateModel)
         {
             ItemDTO requestData = new ItemDTO() { ItemId = itemUpdateModel.ItemId, Text = itemUpdateModel.Name};
@@ -50,6 +55,7 @@ namespace ASPNetCoreMastersTodoList.Api.Controllers
             return Ok(requestData);
         }
         [HttpDelete("{itemId}")]
+        [EnsureItemIdExistFilterAttribute]
         public IActionResult Delete(int itemId)
         {
             return Ok(_service.Delete(itemId));
