@@ -1,4 +1,5 @@
 ﻿using ASPNetCoreMastersTodoList.Api.ApiModels;
+using ASPNetCoreMastersTodoList.Api.Filters;
 using Microsoft.AspNetCore.Mvc;
 using Services;
 using Services.DTO;
@@ -12,6 +13,7 @@ namespace ASPNetCoreMastersTodoList.Api.Controllers
 {
     [Route("{controller}")]
     [ApiController]
+    [EnsureItemIdExistFilterAttribute]
     public class ItemsController : ControllerBase
     {
         public readonly IItemService _service;
