@@ -1,8 +1,10 @@
 using ASPNetCoreMastersTodoList.Api.ApiModels;
+using ASPNetCoreMastersTodoList.Api.Authorization;
 using ASPNetCoreMastersTodoList.Api.Data;
 using ASPNetCoreMastersTodoList.Api.Filters;
 using ASPNetCoreMastersTodoList.Api.Options;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -69,6 +71,14 @@ namespace ASPNetCoreMastersTodoList.Api
             {
                 options.Filters.Add(new ExecutionTimeFilter());
             });
+
+            services.AddAuthorization(options => {
+                options.AddPolicy("CanEditItems",
+                    policy => policy.Requirements.Add(new IsItemOwnerRequirement()));
+            });
+
+            services.AddScoped<IAuthorizationHandler, IsItemOwnerHandler>();
+
             services.AddScoped<IItemService, ItemService>();
             services.AddTransient<IItemRepository, ItemRepository>();
             services.AddSingleton<DataContext>();
