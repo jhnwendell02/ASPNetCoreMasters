@@ -3,6 +3,7 @@ using ASPNetCoreMastersTodoList.Api.Filters;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Services;
 using Services.DTO;
 using System;
@@ -23,11 +24,13 @@ namespace ASPNetCoreMastersTodoList.Api.Controllers
         public readonly IItemService _service;
         private readonly UserManager<IdentityUser> _userService;
         private readonly IAuthorizationService _authService;
-        public ItemsController(IItemService service, UserManager<IdentityUser> userService, IAuthorizationService authService)
+        private readonly ILogger<ItemsController> _logger;
+        public ItemsController(IItemService service, UserManager<IdentityUser> userService, IAuthorizationService authService, ILogger<ItemsController> logger)
         {
             _service = service;
             _userService = userService;
             _authService = authService;
+            _logger = logger;
         }
         [HttpGet]
         public IActionResult GetAll(int userId)
