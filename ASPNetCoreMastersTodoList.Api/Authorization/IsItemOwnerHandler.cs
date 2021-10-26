@@ -28,7 +28,7 @@ namespace ASPNetCoreMastersTodoList.Api.Authorization
                 return;
             }
 
-            if (resource.CreatedBy == appUser.Id)
+            if (resource.CreatedBy == Guid.Parse(appUser.Id))
             {
                 context.Succeed(requirement);
             }

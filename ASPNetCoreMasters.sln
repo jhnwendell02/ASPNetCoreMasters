@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Servic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainModels", "DomainModels\DomainModels.csproj", "{8A681DFB-D257-4E8F-B814-6D897CCF3353}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repositories", "Repositories\Repositories.csproj", "{BE182A2C-360F-496A-92C6-1C4A3266674F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repositories", "Repositories\Repositories.csproj", "{BE182A2C-360F-496A-92C6-1C4A3266674F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{BA505A35-EEC0-4BFD-8CB1-D5A3863529C3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{BE182A2C-360F-496A-92C6-1C4A3266674F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE182A2C-360F-496A-92C6-1C4A3266674F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE182A2C-360F-496A-92C6-1C4A3266674F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA505A35-EEC0-4BFD-8CB1-D5A3863529C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA505A35-EEC0-4BFD-8CB1-D5A3863529C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA505A35-EEC0-4BFD-8CB1-D5A3863529C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA505A35-EEC0-4BFD-8CB1-D5A3863529C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

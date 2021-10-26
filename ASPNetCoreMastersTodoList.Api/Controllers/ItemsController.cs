@@ -53,7 +53,8 @@ namespace ASPNetCoreMastersTodoList.Api.Controllers
         {
             var email = ((ClaimsIdentity)User.Identity).Name;
             ItemDTO requestData = new ItemDTO() { ItemId = itemCreateModel.ItemId, Text = itemCreateModel.Name };
-            _service.Create(requestData);
+            var user = await _userService.FindByEmailAsync(email);
+            _service.Create(requestData, user.Id);
             return Ok(requestData);
         }
         [HttpPut("{itemId}")]

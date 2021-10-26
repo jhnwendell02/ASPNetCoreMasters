@@ -30,7 +30,7 @@ namespace Services
         {
             _logger.LogInformation("Getting Items by Id. ItemId = {ItemId}. {RequestTime}", itemId.ToString(), DateTime.Now);
             var items = _repos.All();
-            return items.Select(s => new ItemDTO() { ItemId = s.ItemId, Text = s.Text }).Where(x => x.ItemId == itemId).FirstOrDefault();
+            return items.Select(s => new ItemDTO() { ItemId = s.ItemId, Text = s.Text, CreatedBy = s.CreatedBy }).Where(x => x.ItemId == itemId).FirstOrDefault();
         }
         public IEnumerable<ItemDTO> GetAllByFilter(ItemByFilterDTO filters)
         {
@@ -63,10 +63,11 @@ namespace Services
             item.ItemId = request.ItemId; 
             _repos.Save(item);
         }
-        public void Create(ItemDTO request)
+        public void Create(ItemDTO request, string userId)
         {
             _logger.LogInformation("Creating Item. {RequestTime}", DateTime.Now);
             ItemDTO item = new ItemDTO() { Text = request.Text, ItemId = request.ItemId };
+            _repos.Create(new Item() { Text = request.Text }, userId);
         }
         public string Delete(int itemId)
         {

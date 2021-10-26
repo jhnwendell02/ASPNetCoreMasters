@@ -11,5 +11,6 @@ namespace Repositories.Interfaces
         public IQueryable<Item> All();
         public void Save(Item item);
         public void Delete(int id);
+        public void Create(Item item, string userId);
     }
 }
