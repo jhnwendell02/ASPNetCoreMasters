@@ -22,7 +22,8 @@ namespace Repositories.Implementation
             return _itemContext.Item.Select(x => new Item { 
                 ItemId = x.Id,
                 Text = x.Text,
-                CreatedBy = x.CreatedBy
+                CreatedBy = x.CreatedBy,
+                DateCreated = x.DateCreated
             }).AsQueryable();
             //return _dataContext.Items.AsQueryable();
         }

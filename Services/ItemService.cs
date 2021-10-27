@@ -23,14 +23,14 @@ namespace Services
         {
             _logger.LogInformation("Getting all Items - {RequestTime}", DateTime.Now);
             var items = _repos.All();
-            IEnumerable<ItemDTO> response = items.Select(s => new ItemDTO() { ItemId = s.ItemId, Text = s.Text });
+            IEnumerable<ItemDTO> response = items.Select(s => new ItemDTO() { ItemId = s.ItemId, Text = s.Text, CreatedBy = s.CreatedBy, DateCreated = s.DateCreated });
             return response;
         }
         public ItemDTO Get(int itemId)
         {
             _logger.LogInformation("Getting Items by Id. ItemId = {ItemId}. {RequestTime}", itemId.ToString(), DateTime.Now);
             var items = _repos.All();
-            return items.Select(s => new ItemDTO() { ItemId = s.ItemId, Text = s.Text, CreatedBy = s.CreatedBy }).Where(x => x.ItemId == itemId).FirstOrDefault();
+            return items.Select(s => new ItemDTO() { ItemId = s.ItemId, Text = s.Text, CreatedBy = s.CreatedBy, DateCreated = s.DateCreated }).Where(x => x.ItemId == itemId).FirstOrDefault();
         }
         public IEnumerable<ItemDTO> GetAllByFilter(ItemByFilterDTO filters)
         {

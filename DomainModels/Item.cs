@@ -8,5 +8,6 @@ namespace DomainModels
         public int ItemId { get; set; }
 
         public Guid CreatedBy { get; set; }
+        public DateTime DateCreated { get; set; }
     }
 }
