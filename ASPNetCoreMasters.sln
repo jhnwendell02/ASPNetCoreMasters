@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainModels", "DomainModel
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repositories", "Repositories\Repositories.csproj", "{BE182A2C-360F-496A-92C6-1C4A3266674F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{BA505A35-EEC0-4BFD-8CB1-D5A3863529C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data\Data.csproj", "{BA505A35-EEC0-4BFD-8CB1-D5A3863529C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{A2E27DF8-4944-490F-A4BF-A9CC9C3FCEFB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{BA505A35-EEC0-4BFD-8CB1-D5A3863529C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA505A35-EEC0-4BFD-8CB1-D5A3863529C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA505A35-EEC0-4BFD-8CB1-D5A3863529C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2E27DF8-4944-490F-A4BF-A9CC9C3FCEFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2E27DF8-4944-490F-A4BF-A9CC9C3FCEFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2E27DF8-4944-490F-A4BF-A9CC9C3FCEFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2E27DF8-4944-490F-A4BF-A9CC9C3FCEFB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
