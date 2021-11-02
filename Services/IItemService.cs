@@ -13,7 +13,7 @@ namespace Services
         void Add(ItemDTO itemDto);
         void Save(ItemDTO itemDto);
         void Update(ItemDTO itemDto);
-        void Create(ItemDTO itemDto);
+        void Create(ItemDTO itemDto, string userId);
         string Delete(int itemId);
     }
 }

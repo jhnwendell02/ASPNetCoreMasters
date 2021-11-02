@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ASPNetCoreMastersTodoList.Api.CustomValidationAttribute;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -13,6 +14,8 @@ namespace ASPNetCoreMastersTodoList.Api.ApiModels
 
         [Required]
         [EmailAddress]
+        [EmailValidator(allowedDomain: "gmail.com",
+            ErrorMessage = "Your Email Domain must be gmail.com")]
         [Display(Name = "Email")]
         public string Email { get; set; }
 

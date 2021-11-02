@@ -1,4 +1,5 @@
-﻿using DomainModels;
+﻿using Data;
+using DomainModels;
 using Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -9,32 +10,47 @@ namespace Repositories.Implementation
 {
     public class ItemRepository : IItemRepository
     {
-        public readonly DataContext _dataContext;
-        public ItemRepository(DataContext dataContext)
+        public readonly ItemDBContext _itemContext;
+        public ItemRepository(DataContext dataContext, ItemDBContext itemContext)
         {
-            _dataContext = dataContext;
+            _itemContext = itemContext;
         }
         public IQueryable<Item> All()
         {
-            return _dataContext.Items.AsQueryable();
+            return _itemContext.Item.Select(x => new Item { 
+                ItemId = x.Id,
+                Text = x.Text,
+                CreatedBy = x.CreatedBy,
+                DateCreated = x.DateCreated
+            }).AsQueryable();
         }
 
         public void Delete(int id)
         {
-            _dataContext.Items.RemoveAll(x => x.ItemId == id);
+            Data.Models.Item itemData = _itemContext.Item.Find(id);
+            if (itemData == null) { throw new Exception("Unable to find the Item"); }
+            _itemContext.Item.Remove(itemData);
+            _itemContext.SaveChanges();
         }
 
         public void Save(Item item)
         {
-            Item data = _dataContext.Items.Where(x => x.ItemId == item.ItemId).FirstOrDefault();
-            if (data == null)
+            Data.Models.Item itemData = _itemContext.Item.Find(item.ItemId);
+            if (itemData == null)
             {
-                _dataContext.Items.Add(item);
+                _itemContext.Item.Add(new Data.Models.Item() { Text = item.Text, CreatedBy = item.CreatedBy, DateCreated = DateTime.Now});
+                _itemContext.SaveChanges();
             }
             else
             {
-                data.Text = data.Text;
+                itemData.Text = item.Text;
+                _itemContext.SaveChanges();
             }
+        }
+        public void Create(Item item, string userId)
+        {
+            _itemContext.Item.Add(new Data.Models.Item() { Text = item.Text, CreatedBy = Guid.Parse(userId), DateCreated = DateTime.Now });
+            _itemContext.SaveChanges();
         }
     }
 }

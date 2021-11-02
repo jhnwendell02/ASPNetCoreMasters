@@ -1,8 +1,13 @@
 using ASPNetCoreMastersTodoList.Api.ApiModels;
-using ASPNetCoreMastersTodoList.Api.Data;
+using ASPNetCoreMastersTodoList.Api.Authorization;
+using ASPNetCoreMastersTodoList.Api.Dependency;
 using ASPNetCoreMastersTodoList.Api.Filters;
+using ASPNetCoreMastersTodoList.Api.Middleware;
 using ASPNetCoreMastersTodoList.Api.Options;
+using Autofac;
+using Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,7 +35,7 @@ namespace ASPNetCoreMastersTodoList.Api
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            Configuration = configuration; 
         }
 
         public IConfiguration Configuration { get; }
@@ -38,6 +43,10 @@ namespace ASPNetCoreMastersTodoList.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddCors(options => options.AddDefaultPolicy(
+                    builder => builder.AllowAnyOrigin()
+            ));
             services.AddDbContext<ItemDBContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("Default"));
@@ -69,12 +78,25 @@ namespace ASPNetCoreMastersTodoList.Api
             {
                 options.Filters.Add(new ExecutionTimeFilter());
             });
-            services.AddScoped<IItemService, ItemService>();
-            services.AddTransient<IItemRepository, ItemRepository>();
-            services.AddSingleton<DataContext>();
+
+            services.AddAuthorization(options => {
+                options.AddPolicy("CanEditItems",
+                    policy => policy.Requirements.Add(new IsItemOwnerRequirement()));
+            });
+
+            services.AddScoped<IAuthorizationHandler, IsItemOwnerHandler>();
+
+            //services.AddScoped<IItemService, ItemService>();
+            //services.AddTransient<IItemRepository, ItemRepository>();
+            //services.AddSingleton<DataContext>();
             services.Configure<AuthenticationSettings>(Configuration.GetSection("Authentication:JWT"));
+            services.AddOptions();
         }
 
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            builder.RegisterModule(new RegisterDependency());
+        }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -90,7 +112,12 @@ namespace ASPNetCoreMastersTodoList.Api
 
             app.UseHttpsRedirection();
 
+            app.UseMiddleware<RequestBodyLoggingMiddleware>();
+            app.UseMiddleware<ResponseBodyLoggingMiddleware>();
+
             app.UseRouting();
+
+            app.UseCors();
 
             app.UseAuthentication();
 
