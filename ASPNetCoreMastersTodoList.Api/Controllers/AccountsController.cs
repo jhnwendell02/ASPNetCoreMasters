@@ -16,8 +16,9 @@ using System.Threading.Tasks;
 
 namespace ASPNetCoreMastersTodoList.Api.Controllers
 {
+
+    [Route("{controller}")]
     [ApiController]
-    [Route("[controller]")]
     public class AccountsController : ControllerBase
     {
         private readonly UserManager<IdentityUser> _userManager;

@@ -2,6 +2,7 @@ using ASPNetCoreMastersTodoList.Api.ApiModels;
 using ASPNetCoreMastersTodoList.Api.Authorization;
 using ASPNetCoreMastersTodoList.Api.Dependency;
 using ASPNetCoreMastersTodoList.Api.Filters;
+using ASPNetCoreMastersTodoList.Api.Middleware;
 using ASPNetCoreMastersTodoList.Api.Options;
 using Autofac;
 using Data;
@@ -110,6 +111,9 @@ namespace ASPNetCoreMastersTodoList.Api
             }
 
             app.UseHttpsRedirection();
+
+            app.UseMiddleware<RequestBodyLoggingMiddleware>();
+            app.UseMiddleware<ResponseBodyLoggingMiddleware>();
 
             app.UseRouting();
 
