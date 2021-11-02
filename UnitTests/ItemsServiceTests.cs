@@ -23,20 +23,10 @@ namespace XunitTests
 {
     public class ItemsServiceTests
     {
-        private readonly Mock<IItemRepository> _itemsRepoMock;
-        private readonly ItemService _itemService;
-        private readonly ILogger<ItemService> _logger;
-
         private readonly Mock<IItemService> service;
-
-
-
 
         public ItemsServiceTests()
         {
-            _logger = new Logger<ItemService>(new NullLoggerFactory());
-            _itemsRepoMock = new Mock<IItemRepository>();
-            _itemService = new ItemService(_itemsRepoMock.Object, _logger);
             service = new Mock<IItemService>();
         }
 
@@ -98,21 +88,6 @@ namespace XunitTests
 
             //assert
             Assert.Equal(itemId.ToString(), item.ItemId.ToString());
-        }
-
-        [Fact]
-        public void GetAll_ShouldCallGetAllFromRepository_OnlyOnce()
-        {
-            //arrange
-            var itemsList = new List<Item>();
-            _itemsRepoMock.Setup(c =>
-                c.All()).Returns(itemsList.AsQueryable());
-
-            //act
-            _itemService.GetAll();
-
-            //assert
-            _itemsRepoMock.Verify(mock => mock.All(), Times.Once);
         }
 
         [Fact]
